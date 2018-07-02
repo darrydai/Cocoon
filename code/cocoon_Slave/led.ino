@@ -11,7 +11,7 @@ void led_Init()
 
 void fade()
 {
-  for(int x=0;x<=100;x+=5)
+  for(int x=0;x<=100;x+=2)
   {
     for(int i=0;i<=NUM_LEDS;i++)
     {
@@ -19,9 +19,9 @@ void fade()
     }
     strip.setBrightness(x);
     strip.show();
-    delay(110); 
+    delay(150); 
   }
-  for(int x=100;x>=0;x-=5)
+  for(int x=100;x>=0;x-=2)
   {
     for(int i=0;i<=NUM_LEDS;i++)
     {
@@ -29,7 +29,7 @@ void fade()
     }
     strip.setBrightness(x);
     strip.show();
-    delay(110); 
+    delay(150); 
   }
 }
 

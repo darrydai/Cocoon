@@ -76,7 +76,7 @@ void fixed_Time_Airplay(uint8_t cheack_Time)
 {
   switch (cheack_Time)
   {
-    case 11:
+    case 5:
       if(player_State!=cheack_Time)
       {
         myDFPlayer.stop();
@@ -92,7 +92,7 @@ void fixed_Time_Airplay(uint8_t cheack_Time)
         myDFPlayer.playMp3Folder(1);
       }      
       break;
-    case 12:
+    case 6:
       if(player_State!=cheack_Time)
       {
         myDFPlayer.stop();
@@ -108,7 +108,7 @@ void fixed_Time_Airplay(uint8_t cheack_Time)
         myDFPlayer.playMp3Folder(1);
       }  
       break;
-    case 13:
+    case 12:
       if(player_State!=cheack_Time)
       {
         incomingByte='a';
@@ -126,7 +126,7 @@ void fixed_Time_Airplay(uint8_t cheack_Time)
         myDFPlayer.playMp3Folder(1);
       }
       break;
-    case 14:
+    case 17:
       if(player_State!=cheack_Time)
       {
         incomingByte='b';
