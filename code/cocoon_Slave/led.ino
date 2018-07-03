@@ -33,3 +33,31 @@ void fade()
   }
 }
 
+void fade_Playmode()
+{ 
+  for(x=0;x<=100;x+=2)
+  {
+    for(int i=0;i<=NUM_LEDS;i++)
+    {
+      strip.setPixelColor(i, strip.Color(10,136,190));
+    }
+    strip.setBrightness(x);
+    strip.show();
+    delay(150); 
+  }
+  if(brightness==100)
+  {
+    strip.setBrightness(x);
+    strip.show();
+  }
+  for(int x=100;x>=0;x-=2)
+  {
+    for(int i=0;i<=NUM_LEDS;i++)
+    {
+      strip.setPixelColor(i, strip.Color(10,136,190));
+    }
+    strip.setBrightness(x);
+    strip.show();
+    delay(150); 
+  }
+}

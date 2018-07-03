@@ -3,7 +3,8 @@
 
 #define PIN 2
 #define NUM_LEDS 100
-#define BRIGHTNESS 100
+#define init_BRIGHTNESS 0
+#define brightness
 
 const int SLAVE_ADDRESS = 1;
 char incomingByte = 0;
@@ -25,6 +26,10 @@ void loop()
     fade(); 
   }
   else if(incomingByte=='b')
+  {
+    fade_Playmode;
+  }
+  else if(incomingByte=='c')
   {
     led_Init();
   }
