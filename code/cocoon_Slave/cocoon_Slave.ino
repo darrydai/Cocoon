@@ -3,15 +3,14 @@
 
 #define PIN 2
 #define NUM_LEDS 100
-#define init_BRIGHTNESS 0
-#define brightness
 
 const int SLAVE_ADDRESS = 1;
-char incomingByte = 0;
+char lightMode = 0;
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_LEDS, PIN, NEO_BRG + NEO_KHZ800);
 
-void setup() {  
+void setup() 
+{  
   Wire.begin(SLAVE_ADDRESS);    // join I2C bus as a slave with address 1
   Wire.onReceive(receiveEvent); // register event
   Serial.begin(9600);
@@ -21,19 +20,24 @@ void setup() {
 
 void loop() 
 {
-  if(incomingByte=='a')
+  if(lightMode=='a')
   {
-    fade(); 
+    fade_normalMode(); 
   }
-  else if(incomingByte=='b')
+  else if(lightMode=='b')
   {
-    fade_Playmode;
+    fade_up();
   }
-  else if(incomingByte=='c')
+  else if(lightMode=='c')
+  {
+    fade_down();
+    lightMode='a';
+  }
+  else if(lightMode=='d')
   {
     led_Init();
   }
-  Serial.println(incomingByte);
+  Serial.println(lightMode);
 }
 
 void receiveEvent(int howMany)
@@ -41,7 +45,7 @@ void receiveEvent(int howMany)
   while (Wire.available()) 
   {
     // receive one byte from Master
-    incomingByte = Wire.read();
+    lightMode = Wire.read();
     //Serial.print(incomingByte);
   }
 }

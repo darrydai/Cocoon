@@ -73,13 +73,3 @@ void rtc_CheackFuntion()
     delay(1000);
 }
 
-void cheack_Hour()
-{
-  DateTime now = rtc.now();
-  current_Time=now.hour();
-  Serial.print(F("current_Time:"));
-  Serial.println(current_Time);
-  Serial.print(F("player_State:"));
-  Serial.println(player_State);
-}
-
