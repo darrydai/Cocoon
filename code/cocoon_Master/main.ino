@@ -8,6 +8,21 @@ void timeChecker()
     Serial.print(F("current_Time:"));
     Serial.print(currentTime_hour);
     Serial.println(currentTime_min);
+    Serial.print(F("calendar"));
+    Serial.print(now.year(), DEC);
+    Serial.print('/');
+    Serial.print(now.month(), DEC);
+    Serial.print('/');
+    Serial.print(now.day(), DEC);
+    Serial.print(" (");
+    Serial.print(daysOfTheWeek[now.dayOfTheWeek()]);
+    Serial.print(") ");
+    Serial.print(now.hour(), DEC);
+    Serial.print(':');
+    Serial.print(now.minute(), DEC);
+    Serial.print(':');
+    Serial.print(now.second(), DEC);
+    Serial.println();
 //    Serial.print(F("player_State:"));
 //    Serial.println(player_State);
   }
