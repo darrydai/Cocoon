@@ -23,8 +23,8 @@ volatile int player_State=0;
 // true is playing,false is Play Finished.
 static boolean songStatus;
 static boolean debugStatus;
-static boolean soundOneStatus;
-static boolean soundTwoStatus;
+//static boolean soundOneStatus;
+//static boolean soundTwoStatus;
 static boolean fadedown;
 char serialRecive;
 
@@ -44,7 +44,9 @@ void loop()
   playerChackTime.update();
   if (myDFPlayer.available()) 
   {
-    printDetail(myDFPlayer.readType(), myDFPlayer.read()); //Print the detail message from DFPlayer to handle different errors and states.
+    printDetail(myDFPlayer.readType(), myDFPlayer.read()); 
+    //Print the detail message from DFPlayer to handle different errors and states.
+    delay(1);
   }
   funtionSelect(currentTime_hour,currentTime_min);
 }
@@ -66,7 +68,7 @@ void serialEvent()
       lightModeSwitch(4);
       break;
     case 's':
-      soundPlay(1,1);
+      soundPlay(1,25);
       break;
     case 't':
       myDFPlayer.stop();

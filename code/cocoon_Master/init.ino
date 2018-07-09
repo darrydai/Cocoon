@@ -5,8 +5,8 @@ void mainInit()
   Serial.begin(115200);
   debugStatus=false;
   songStatus=false;
-  soundOneStatus=false;
-  soundTwoStatus=false;
+  //soundOneStatus=false;
+  //soundTwoStatus=false;
   fadedown=false;
 }
 

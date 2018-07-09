@@ -34,14 +34,14 @@ void lightModeSwitch(int mode)
         }
       break;
     case 4:
-          lightMode='d';
-          Wire.beginTransmission(SLAVE_ADDRESS);
-          Wire.write(lightMode);
-          Wire.endTransmission();
-          if(debugStatus==true)
-          {
-            Serial.println(F("light_Off"));
-          }
+        lightMode='d';
+        Wire.beginTransmission(SLAVE_ADDRESS);
+        Wire.write(lightMode);
+        Wire.endTransmission();
+        if(debugStatus==true)
+        {
+          Serial.println(F("light_Off"));
+        }
       break;
     default:
       break;

@@ -31,7 +31,6 @@ void loop()
   else if(lightMode=='c')
   {
     fade_down();
-    lightMode='a';
   }
   else if(lightMode=='d')
   {
