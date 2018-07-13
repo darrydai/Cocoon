@@ -5,6 +5,8 @@ void printDetail(uint8_t type, int value){
       break;
     case WrongStack:
       Serial.println(F("Stack Wrong!"));
+      myDFPlayer.reset();
+      playerInit();
       break;
     case DFPlayerCardInserted:
       Serial.println(F("Card Inserted!"));
@@ -19,6 +21,8 @@ void printDetail(uint8_t type, int value){
       Serial.print(F("Number:"));
       Serial.print(value);
       Serial.println(F(" Play Finished!"));
+      delay(10);
+      myDFPlayer.stop();
       songStatus=false;
       break;
     case DFPlayerError:

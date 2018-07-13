@@ -5,28 +5,30 @@
 #include "RTClib.h"
 #include "DFRobotDFPlayerMini.h"
 
+#define TX 3
+#define RX 2
+
 const int SLAVE_ADDRESS = 1;
 char lightMode = 0;
+char serialRecive;
 
-SoftwareSerial mySoftwareSerial(3,2);//TX RX
+SoftwareSerial mySoftwareSerial(TX,RX);//TX RX
 DFRobotDFPlayerMini myDFPlayer;
 
 //Timer tcb;
 Timer playerChackTime;
 
 RTC_DS3231 rtc;
-char daysOfTheWeek[7][12] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+//char daysOfTheWeek[7][12] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 
 volatile int currentTime_hour,currentTime_min;
-volatile int player_State=0;
 
-// true is playing,false is Play Finished.
-static boolean songStatus;
-static boolean debugStatus;
-//static boolean soundOneStatus;
-//static boolean soundTwoStatus;
-static boolean fadedown;
-char serialRecive;
+// The sound status, true is playing, false is Play Finished.
+static boolean songStatus=false;
+static boolean debugStatus=false;
+static boolean fadedown=false;
+static boolean soundOneStatus=false;
+static boolean speakStatus=false;
 
 void setup() 
 {  
@@ -42,13 +44,14 @@ void setup()
 void loop() 
 {
   playerChackTime.update();
+  delay(1);
   if (myDFPlayer.available()) 
   {
     printDetail(myDFPlayer.readType(), myDFPlayer.read()); 
     //Print the detail message from DFPlayer to handle different errors and states.
     delay(1);
   }
-  funtionSelect(currentTime_hour,currentTime_min);
+  modeSelect(currentTime_hour,currentTime_min);
 }
 
 void serialEvent()
@@ -72,6 +75,9 @@ void serialEvent()
       break;
     case 't':
       myDFPlayer.stop();
+      break;
+    case 'l':
+      lightModeSwitch(2);
       break;
     default:
       break;

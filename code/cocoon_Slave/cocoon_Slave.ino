@@ -9,6 +9,8 @@ char lightMode = 0;
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_LEDS, PIN, NEO_BRG + NEO_KHZ800);
 
+static int bright_level;
+
 void setup() 
 {  
   Wire.begin(SLAVE_ADDRESS);    // join I2C bus as a slave with address 1
@@ -24,15 +26,16 @@ void loop()
   {
     fade_normalMode(); 
   }
-  else if(lightMode=='b')
+  if(lightMode=='b')
   {
     fade_up();
   }
-  else if(lightMode=='c')
+  if(lightMode=='c')
   {
     fade_down();
+    lightMode='a';
   }
-  else if(lightMode=='d')
+  if(lightMode=='d')
   {
     led_Init();
   }

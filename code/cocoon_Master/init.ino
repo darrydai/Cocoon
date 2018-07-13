@@ -4,8 +4,7 @@ void mainInit()
   mySoftwareSerial.begin(9600);
   Serial.begin(115200);
   debugStatus=false;
-  songStatus=false;
-  //soundOneStatus=false;
+  soundOneStatus=false;
   //soundTwoStatus=false;
   fadedown=false;
 }
@@ -37,4 +36,5 @@ void playerInit()
     }
   }
   Serial.println(F("DFPlayer Mini online."));
+  songStatus=false;
 }

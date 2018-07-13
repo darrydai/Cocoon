@@ -27,9 +27,3 @@ bool checki2cdevice( uint8_t i2caddr )
     return false;
 }
 
-void rtc_Cheacker()
-{
-    DateTime now = rtc.now();
-
-}
-

@@ -1,7 +1,7 @@
 void fade_normalMode()
 {
-  volatile int bright_level;
-  volatile int led_pos;
+  //volatile int bright_level;
+  int led_pos;
   for(bright_level=0;bright_level<=100;bright_level+=2)
   {
     for(int led_pos=0;led_pos<=NUM_LEDS;led_pos++)
@@ -26,11 +26,10 @@ void fade_normalMode()
 
 void fade_up()
 { 
-  static int bright_level;
-  volatile int led_pos;
-  if(bright_level<1)
+  int led_pos;
+  if(bright_level<100)
   {
-    for(bright_level=0;bright_level<=100;bright_level+=2)
+    for(bright_level=bright_level;bright_level<=100;bright_level+=2)
     {
       for(led_pos=0;led_pos<=NUM_LEDS;led_pos++)
       {
@@ -45,8 +44,8 @@ void fade_up()
 
 void fade_down()
 { 
-  volatile int bright_level;
-  volatile int led_pos;
+  //volatile int bright_level;
+  int led_pos;
   for(bright_level=100;bright_level>=0;bright_level-=2)
   {
     for(int led_pos=0;led_pos<=NUM_LEDS;led_pos++)
