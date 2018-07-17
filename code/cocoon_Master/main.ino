@@ -24,8 +24,8 @@ void timeChecker()
     Serial.print(':');
     Serial.print(now.second(), DEC);
     Serial.println();
-    Serial.print(F("songStatus:"));
-    Serial.println(songStatus);
+    Serial.print(F("playerStatus:"));
+    Serial.println(playerStatus);
     Serial.print(F("songOneStatus:"));
     Serial.println(soundOneStatus);
     Serial.print(F("fadedown:"));
@@ -35,16 +35,19 @@ void timeChecker()
   }
 }
 
-void wakeupSpeaker()
+void wakeupSpeaker(int _hour)
 {
-  digitalWrite(4,HIGH);
-  delay(1500);
-  digitalWrite(4,LOW);
-  delay(9000);
-  digitalWrite(5,HIGH);
-  delay(2000);
-  digitalWrite(5,LOW);
-  Serial.println(F("speaker is trun on"));
+  if(currentTime_hour==_hour)
+  {
+    digitalWrite(4,HIGH);
+    delay(1500);
+    digitalWrite(4,LOW);
+    delay(9000);
+    digitalWrite(5,HIGH);
+    delay(2000);
+    digitalWrite(5,LOW);
+    //Serial.println(F("speaker is trun on"));
+  }
 }
 
 void modeSelect(int _hour,int _minute)
@@ -56,34 +59,34 @@ void modeSelect(int _hour,int _minute)
       speakStatus=false;
       break;
     case 12 ... 17:
-      if(_minute==27&&speakStatus==false)
-      {
-        wakeupSpeaker();
-        speakStatus=true;
-      }
+      lightModeSwitch(4);
       if(_minute==30)
       {
         if(soundOneStatus==false)
         {
-          //myDFPlayer.stop();
+          myDFPlayer.stop();
           soundPlay(1,20);
           Serial.println(F("sound one on on time"));
-          songStatus=true;
+          playerStatus=true;
           soundOneStatus=true;
         }
       }
       else
       {
         soundOneStatus==false;
-        if(songStatus==true)
+        if(playerStatus==true)
         {
-          
+          //soundOneStatus=false;
         }
         else
         {
-          soundPlay(2,1);
-          Serial.println(F("normalsound_day"));
-          songStatus=true;
+          if(_minute>30||_minute<30)
+          {
+            myDFPlayer.stop();
+            soundPlay(2,1);
+            Serial.println(F("normalsound_day"));
+            playerStatus=true;
+          }
         }
       }
       break;
@@ -95,7 +98,7 @@ void modeSelect(int _hour,int _minute)
           //myDFPlayer.stop();
           soundPlay(1,20);
           Serial.println(F("sound one on on time"));
-          songStatus=true;
+          playerStatus=true;
           soundOneStatus=true;
           fadedown=false;
         }
@@ -104,7 +107,7 @@ void modeSelect(int _hour,int _minute)
       else
       {
         soundOneStatus=false;
-        if(songStatus==true)
+        if(playerStatus==true)
         {
           break;
         }
@@ -123,7 +126,7 @@ void modeSelect(int _hour,int _minute)
             //myDFPlayer.stop();
             soundPlay(2,1);
             Serial.println(F("normalsound_night"));
-            songStatus=true;
+            playerStatus=true;
           }
         }
       }
@@ -136,7 +139,7 @@ void modeSelect(int _hour,int _minute)
           //myDFPlayer.stop();
           soundPlay(1,20);
           Serial.println(F("sound one on on time"));
-          songStatus=true;
+          playerStatus=true;
           soundOneStatus=true;
           fadedown=false;
         }
@@ -145,7 +148,7 @@ void modeSelect(int _hour,int _minute)
       else
       {
         soundOneStatus=false;
-        if(songStatus==true)
+        if(playerStatus==true)
         {
           break;
         }
@@ -164,12 +167,12 @@ void modeSelect(int _hour,int _minute)
             myDFPlayer.stop();
             soundPlay(2,1);
             Serial.println(F("normalsound_night"));
-            songStatus=true;
+            playerStatus=true;
           }
         }
       }
       break;
-    case 22 ... 24:
+    case 22 ... 23:
       if(_minute==30)
       {
         if(soundOneStatus==false)
@@ -177,7 +180,7 @@ void modeSelect(int _hour,int _minute)
           //myDFPlayer.stop();
           soundPlay(1,20);
           Serial.println(F("sound one on on time"));
-          songStatus=true;
+          playerStatus=true;
           soundOneStatus=true;
           fadedown=false;
         }
@@ -186,7 +189,7 @@ void modeSelect(int _hour,int _minute)
       else
       {
         soundOneStatus=false;
-        if(songStatus==true)
+        if(playerStatus==true)
         {
           break;
         }
@@ -202,164 +205,52 @@ void modeSelect(int _hour,int _minute)
           }
           if(_minute>30||_minute<30)
           {
-            //myDFPlayer.stop();
             soundPlay(2,1);
             Serial.println(F("normalsound_night"));
-            songStatus=true;
+            playerStatus=true;
           }
+        }
+      }
+      break;
+      case 0:
+      if(_minute==30)
+      {
+        if(soundOneStatus==false)
+        {
+          //myDFPlayer.stop();
+          soundPlay(1,20);
+          Serial.println(F("sound one on on time"));
+          playerStatus=true;
+          soundOneStatus=true;
+          fadedown=false;
+        }
+        lightModeSwitch(2);
+      }
+      else
+      {
+        soundOneStatus=false;
+        if(playerStatus==true)
+        {
+          break;
+        }
+        else
+        {
+          if(fadedown==true)
+          {
+            lightModeSwitch(1);
+          }
+          else
+          {
+            lightModeSwitch(3);
+          }
+            soundPlay(2,1);
+            Serial.println(F("normalsound_night"));
+            playerStatus=true;
         }
       }
       break;
   }
 }
-//    if(_hour==hTimeSlot[c]&&_hour>=18)
-//    {
-//      switch(_minute)
-//      {
-//        case 30:
-//          if(soundOneStatus==false)
-//          {
-//            myDFPlayer.stop();
-//            soundPlay(1,20);
-//            delay(1);
-//            Serial.println(F("sound on on time,light mode 2"));
-//            songStatus=true;
-//            fadedown=false;
-//            soundOneStatus=true;
-//          }
-//          lightModeSwitch(2);
-//          break;
-//        default:
-//          soundOneStatus=false;
-//          if(songStatus==true)
-//          {
-//            break;
-//          }
-//          else
-//          {
-//            if(fadedown==true)
-//            {
-//              lightModeSwitch(1);
-//            }
-//            else
-//            {
-//              lightModeSwitch(3);
-//            }
-//            if(_minute>30||_minute<30)
-//            {
-//              myDFPlayer.stop();
-//              soundPlay(2,1);
-//              Serial.println(F("normalstatus_"));
-//              songStatus=true;
-//            }
-//          }
-//          break;
-//        }
-//    }      
-//  }
-//  switch (_hour)
-//  {
-//    case 12:
-//      switch(_minute)
-//      {
-//        case 30:
-//            myDFPlayer.stop();
-//            soundPlay(1,20);
-//            Serial.println(F("sound on on time"));
-//            //soundOneStatus=true;
-//            songStatus=true;
-//          break;
-//        default:
-//          if(songStatus==true)
-//          {
-//            break;
-//          }
-//          else
-//          {
-//            if(_minute>55|| _minute<55)
-//            {
-//              myDFPlayer.stop();
-//              soundPlay(2,1);
-//              Serial.println(F("normalstatus_"));
-//              songStatus=true;
-//            }
-//          }
-//          break;
-//      }
-//     break;
-//    case 20:
-//      switch(_minute)
-//      {
-//        case 25:
-//            myDFPlayer.stop();
-//            soundPlay(1,20);
-//            lightModeSwitch(2);
-//            Serial.println(F("sound on on time"));
-//            //soundOneStatus=true;
-//            songStatus=true;
-//        break;
-//        default:
-//          if(songStatus==true)
-//          {
-//            break;
-//          }
-//          else
-//          {
-//            /*
-//             If the sound is finished playing,fadedown the light,
-//             and next loop is fade_normalMode.
-//            */
-//            if(fadedown==true)
-//            {
-//              lightModeSwitch(1);
-//            }
-//            else
-//            {
-//              lightModeSwitch(3);
-//            }
-//            if(_minute>25||_minute<25)
-//            {
-//              myDFPlayer.stop();
-//              soundPlay(2,1);
-//              Serial.println(F("normalstatus_"));
-//              songStatus=true;
-//            }
-//          }
-//          break;
-//      }
-//      break;
-//    case 21:
-//      lightModeSwitch(1);
-//      delay(100);
-//      if(songStatus==true)
-//      {
-//        break;
-//      }
-//      else
-//      {
-//        myDFPlayer.stop();
-//        soundPlay(2,1);
-//        Serial.println(F("normalstatus_light"));
-//        songStatus=true;
-//      }
-//      break;    
-//    default:
-//      if(songStatus==true)
-//      {
-//        break;
-//      }
-//      else
-//      {
-//        myDFPlayer.stop();
-//        //myDFPlayer.reset();
-//        delay(1);
-//        soundPlay(2,1);
-//        Serial.println(F("normalstatus_other"));
-//        songStatus=true;
-//      }
-//      break;
-//  }
-//}  
 
 void soundPlay(int soundNumber,int soundVolume)
 {

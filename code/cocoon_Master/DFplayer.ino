@@ -2,6 +2,7 @@ void printDetail(uint8_t type, int value){
   switch (type) {
     case TimeOut:
       Serial.println(F("Time Out!"));
+      mainInit();
       break;
     case WrongStack:
       Serial.println(F("Stack Wrong!"));
@@ -23,7 +24,7 @@ void printDetail(uint8_t type, int value){
       Serial.println(F(" Play Finished!"));
       delay(10);
       myDFPlayer.stop();
-      songStatus=false;
+      playerStatus=false;
       break;
     case DFPlayerError:
       Serial.print(F("DFPlayerError:"));

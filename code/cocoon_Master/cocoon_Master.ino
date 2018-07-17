@@ -8,8 +8,8 @@
 #define TX 3
 #define RX 2
 
-const int SLAVE_ADDRESS = 1;
-char lightMode = 0;
+//const int SLAVE_ADDRESS = 1;
+//char lightMode = 0;
 char serialRecive;
 
 SoftwareSerial mySoftwareSerial(TX,RX);//TX RX
@@ -24,11 +24,11 @@ RTC_DS3231 rtc;
 volatile int currentTime_hour,currentTime_min;
 
 // The sound status, true is playing, false is Play Finished.
-static boolean songStatus=false;
-static boolean debugStatus=false;
-static boolean fadedown=false;
-static boolean soundOneStatus=false;
-static boolean speakStatus=false;
+static boolean playerStatus;
+static boolean debugStatus;
+static boolean fadedown;
+static boolean soundOneStatus;
+static boolean speakStatus;
 
 void setup() 
 {  
@@ -51,6 +51,7 @@ void loop()
     //Print the detail message from DFPlayer to handle different errors and states.
     delay(1);
   }
+  wakeupSpeaker(12);
   modeSelect(currentTime_hour,currentTime_min);
 }
 

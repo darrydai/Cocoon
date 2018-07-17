@@ -3,20 +3,22 @@ void mainInit()
   Wire.begin();         // join I2C bus as a Master
   mySoftwareSerial.begin(9600);
   Serial.begin(115200);
+  //myDFPlayer.reset();
   debugStatus=false;
+  speakStatus=false;;
+  playerStatus=false;
   soundOneStatus=false;
-  //soundTwoStatus=false;
   fadedown=false;
 }
 
 void speaker_init()
 {
-  pinMode(4,OUTPUT);
+  //pinMode(4,OUTPUT);
   pinMode(5,OUTPUT);
-  digitalWrite(4,HIGH);
-  delay(1500);
-  digitalWrite(4,LOW);
-  delay(9000);
+  //digitalWrite(4,HIGH);
+  //delay(1500);
+  //digitalWrite(4,LOW);
+  //delay(9000);
   digitalWrite(5,HIGH);
   delay(2000);
   digitalWrite(5,LOW);
@@ -36,5 +38,4 @@ void playerInit()
     }
   }
   Serial.println(F("DFPlayer Mini online."));
-  songStatus=false;
 }

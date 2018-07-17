@@ -1,11 +1,11 @@
 #include <Wire.h>
 #include "Adafruit_NeoPixel.h"
 
-#define PIN 2
-#define NUM_LEDS 100
+#define PIN 8
+#define NUM_LEDS 350
 
 const int SLAVE_ADDRESS = 1;
-char lightMode = 0;
+char lightMode = 'a';
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_LEDS, PIN, NEO_BRG + NEO_KHZ800);
 
