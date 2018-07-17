@@ -3,7 +3,6 @@ void mainInit()
   Wire.begin();         // join I2C bus as a Master
   mySoftwareSerial.begin(9600);
   Serial.begin(115200);
-  //myDFPlayer.reset();
   debugStatus=false;
   speakStatus=false;;
   playerStatus=false;
@@ -22,7 +21,7 @@ void speaker_init()
   digitalWrite(5,HIGH);
   delay(2000);
   digitalWrite(5,LOW);
-  Serial.println(F("speaker is trun on"));
+  //Serial.println(F("speaker is trun on"));
 }
 
 void playerInit()

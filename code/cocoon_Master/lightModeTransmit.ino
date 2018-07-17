@@ -3,10 +3,6 @@ void lightModeSwitch(int mode)
   switch (mode)
   {
     case 1:
-//        lightMode='a';
-//        Wire.beginTransmission(SLAVE_ADDRESS);
-//        Wire.write(lightMode);
-//        Wire.endTransmission();
         ledTransmission('a');
         if(debugStatus==true)
         {
@@ -14,10 +10,6 @@ void lightModeSwitch(int mode)
         }
       break;
     case 2:
-//        lightMode='b';
-//        Wire.beginTransmission(SLAVE_ADDRESS);
-//        Wire.write(lightMode);
-//        Wire.endTransmission();
         ledTransmission('b');
         if(debugStatus==true)
         {
@@ -25,10 +17,6 @@ void lightModeSwitch(int mode)
         }
       break;
     case 3:
-//        lightMode='c';
-//        Wire.beginTransmission(SLAVE_ADDRESS);
-//        Wire.write(lightMode);
-//        Wire.endTransmission();
         ledTransmission('c');
         fadedown=true;
         if(debugStatus==true)
@@ -37,10 +25,7 @@ void lightModeSwitch(int mode)
         }
       break;
     case 4:
-//        lightMode='d';
-//        Wire.beginTransmission(SLAVE_ADDRESS);
-//        Wire.write(lightMode);
-//        Wire.endTransmission();
+
         ledTransmission('d');
         if(debugStatus==true)
         {
