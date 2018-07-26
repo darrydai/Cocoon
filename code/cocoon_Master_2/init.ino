@@ -10,6 +10,7 @@ void speaker_init()
 {
   pinMode(4,OUTPUT);
   pinMode(5,OUTPUT);
+  delay(9000);
   digitalWrite(5,HIGH);
   delay(2000);
   digitalWrite(5,LOW);

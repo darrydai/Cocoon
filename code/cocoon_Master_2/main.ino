@@ -37,7 +37,7 @@ void mainSound(int _hour,int _minute)
       if(soundOneStatus==false)
       {
         myDFPlayer.stop();
-        soundPlay(1,20);
+        soundPlay(1,25);
         playerStatus=true;
         soundOneStatus=true;
       }

@@ -45,4 +45,30 @@ void ledTransmission(char _lightMode)
   Wire.endTransmission();
 }
 
+void light()
+{
+  if(currentTime_hour<18 && currentTime_hour>0)
+  {
+    lightModeSwitch(4);
+    delay(100);
+  }
+  else
+  {
+    if(soundOneStatus==true)
+    {
+      if(fadedown==false)
+      {
+        lightModeSwitch(2);
+      }
+    }
+    if(fadedown==true)
+    {
+      lightModeSwitch(1);
+    }
+    else
+    {
+      lightModeSwitch(3);
+    }
+  }
+}
 

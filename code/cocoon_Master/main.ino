@@ -31,6 +31,8 @@ void information()
 {
   Serial.print(F("playerStatus:"));
   Serial.println(playerStatus);
+  Serial.print(F("soundOneStatus"));
+  Serial.println(soundOneStatus);
   Serial.print(F("fadedown:"));
   Serial.println(fadedown);
   Serial.print(F("speakStatus:"));
@@ -55,16 +57,63 @@ void wakeupSpeaker(int _hour,int _minute)
   }
 }
 
+//void mainSound(int _hour,int _minute)
+//{
+//  if(currentTime_hour == _hour)
+//  {
+//    if(currentTime_min == _minute)
+//    {
+//      if(soundOneStatus==false)
+//      {
+//        //myDFPlayer.stop();
+//        soundPlay(1,20);
+//        Serial.println(F("sound one on time"));
+//        playerStatus=true;
+//        soundOneStatus=true;
+//        fadedown=false;
+//      }
+//    } 
+//    else
+//    {
+//      if(playerStatus==true)
+//      {
+//
+//      }  
+//    }
+//    if(currentTime_min == (_minute+1))
+//    {
+//      soundOneStatus==false;
+//    }
+//  }
+//}
+//
+//void keepTheSpkOn(int _time1,int _time2,int _minute)
+//{
+//  if(currentTime_hour >= _time1 && currentTime_hour <= _time2)
+//  {
+//    if(currentTime_min> _minute || currentTime_min< _minute)
+//    {
+//      if(playerStatus!=true)
+//      {
+//        myDFPlayer.stop();
+//        soundPlay(2,1);
+//        playerStatus=true;
+//        Serial.println(F("normalsound"));
+//      }
+//    }
+//  }
+//}
+
 void modeSelect(int _hour,int _minute)
 {
   switch(_hour)
   {
-    case 1 ... 11:
+    case 1 ... 12:
       lightModeSwitch(4);
       speakStatus=false;
       delay(100);
       break;
-    case 12 ... 17:
+    case 14:
       if(_minute==30)
       {
         if(soundOneStatus==false)
@@ -258,11 +307,11 @@ void modeSelect(int _hour,int _minute)
 
 void soundPlay(int soundNumber,int soundVolume)
 {
-  char* songList[]={"playSound_1","playSound_2"};
+  char* sList[]={"playSound_1","playSound_2"};
   myDFPlayer.volume(soundVolume);
   myDFPlayer.playMp3Folder(soundNumber);
   if(debugStatus==true)
   {
-    Serial.println(songList[soundNumber-1]);
+    Serial.println(sList[soundNumber-1]);
   }
 }

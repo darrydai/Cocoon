@@ -4,15 +4,15 @@ void rtc_Init()
   delay(10);   // wait wire to stable
   if( !checki2cdevice( DS3231_ADDRESS ) )  
   { 
-    Serial.println( "DS3231 RTC Module not found!" );   // 沒有 delay(10), 這裡輸出不了！
+    Serial.println(F("DS3231 RTC Module not found!"));   // 沒有 delay(10), 這裡輸出不了！
     while(1) delay(1);
   }
 
   if (rtc.lostPower()) 
   {
-    Serial.println("RTC lost power, lets set the time!");
+    Serial.println(F("RTC lost power, lets set the time!"));
     // following line sets the RTC to the date & time this sketch was compiled
-    DateTime timeupdate = DateTime( F( __DATE__ ), F( __TIME__ ) ) + TimeSpan( /*days*/0, /*hours*/0, /*minutes*/0, /*seconds*/5.75 );
+    DateTime timeupdate = DateTime( F( __DATE__ ), F( __TIME__ ) ) + TimeSpan( /*days*/0, /*hours*/0, /*minutes*/0, /*seconds*/5.34 );
     // This line sets the RTC with an explicit date & time, for example to set
     // January 21, 2014 at 3am you would call:
     rtc.adjust( timeupdate );

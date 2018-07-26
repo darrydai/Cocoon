@@ -51,10 +51,16 @@ void loop()
   }
   playerChackTime.update();
   lightChack.update();
-  B_09();
-//  mainSound(11,35);
-//  mainSound(11,50);
-//  mainSound(12,00);
+//  B_09();// L cocoong
+//  mainSound(19,30);// S cocoon 2 4 6
+//  mainSound(21,00);
+//  mainSound(21,30);
+//  mainSound(23,30);
+  mainSound(18,30);// S cocoon 1 3 5
+  mainSound(20,30);
+  mainSound(21,00);
+  mainSound(22,30);
+  keepTheSpkOn(18,23,30);
 }
 
 void serialEvent()
@@ -76,12 +82,13 @@ void serialEvent()
       lightModeSwitch(4);
       break;
     case 's':
-      soundPlay(1,15);
-      
+      //soundPlay(1,20); // Cocoon big
+      soundPlay(1,23); //Cocoon small
+      soundOneStatus=true;
+      playerStatus=true;
       break;
     case 't':
       myDFPlayer.stop();
-      soundOneStatus=true;
       break;
     case 'l':
       lightModeSwitch(2);

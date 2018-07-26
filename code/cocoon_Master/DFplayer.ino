@@ -2,11 +2,13 @@ void printDetail(uint8_t type, int value){
   switch (type) {
     case TimeOut:
       Serial.println(F("Time Out!"));
-      myDFPlayer.reset();
-      playerInit();
+//      mainInit();
+//      myDFPlayer.reset();
+//      playerInit();
       break;
     case WrongStack:
       Serial.println(F("Stack Wrong!"));
+      mainInit();
       myDFPlayer.reset();
       playerInit();
       break;

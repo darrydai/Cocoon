@@ -3,6 +3,7 @@ void mainInit()
   Wire.begin();         // join I2C bus as a Master
   mySoftwareSerial.begin(9600);
   Serial.begin(115200);
+  myDFPlayer.setTimeOut(5000);
   debugStatus=false;
   speakStatus=false;;
   playerStatus=false;

@@ -2,8 +2,8 @@
 #include "Adafruit_NeoPixel.h"
 
 #define PIN 2
-#define NUM_LEDS 350
-
+//#define NUM_LEDS 350 //big cocoon
+#define NUM_LEDS 150 //small cocoon
 const int SLAVE_ADDRESS = 1;
 char lightMode = 0;
 

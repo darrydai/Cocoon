@@ -7,7 +7,6 @@
 //  mainSound(18,30);
 //  mainSound(21,00);
 //  mainSound(22,30);
-//  light();
 //}
 //
 //void B_10_1_4()
