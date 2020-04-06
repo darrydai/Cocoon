@@ -2,10 +2,10 @@
 #include "Adafruit_NeoPixel.h"
 
 #define PIN 2
-//#define NUM_LEDS 350 //big cocoon
-#define NUM_LEDS 150 //small cocoon
+#define NUM_LEDS 400 //big cocoon
+//#define NUM_LEDS 150 //small cocoon
 const int SLAVE_ADDRESS = 1;
-char lightMode = 0;
+char lightMode;
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_LEDS, PIN, NEO_BRG + NEO_KHZ800);
 
@@ -22,23 +22,39 @@ void setup()
 
 void loop() 
 {
-  if(lightMode=='a')
+  switch(lightMode)
   {
-    fade_normalMode(); 
+    case 'b':
+      fade_up();
+      break;
+    case 'c':
+      fade_down();
+      lightMode='a';
+      break;
+    case 'd':
+      led_Init();
+      break;
+    default:
+      fade_normalMode();
+      break;
   }
-  if(lightMode=='b')
-  {
-    fade_up();
-  }
-  if(lightMode=='c')
-  {
-    fade_down();
-    lightMode='a';
-  }
-  if(lightMode=='d')
-  {
-    led_Init();
-  }
+//  if(lightMode=='a')
+//  {
+//    fade_normalMode(); 
+//  }
+//  if(lightMode=='b')
+//  {
+//    fade_up();
+//  }
+//  if(lightMode=='c')
+//  {
+//    fade_down();
+//    lightMode='a';
+//  }
+//  if(lightMode=='d')
+//  {
+//    led_Init();
+//  }
   Serial.println(lightMode);
 }
 

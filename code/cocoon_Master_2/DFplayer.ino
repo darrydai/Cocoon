@@ -20,15 +20,15 @@ void printDetail(uint8_t type, int value)
     case DFPlayerPlayFinished:
       Serial.print(F("Number:"));
       Serial.print(value);
-      if(value==1)
+      if(value==2)
       {
-        fadedown=true;
-        delay(1000);
+        ledFadedown=true;
         soundOneStatus=false;
       }
       Serial.println(F(" Play Finished!"));
-      myDFPlayer.stop();
+      //myDFPlayer.stop();
       playerStatus=false;
+      delay(200);
       break;
     case DFPlayerError:
       Serial.print(F("DFPlayerError:"));

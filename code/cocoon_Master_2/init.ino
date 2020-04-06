@@ -35,9 +35,7 @@ void playerInit()
 void statusInit()
 {
   debugStatus=false;
-  speakStatus=false;;
   playerStatus=false;
   soundOneStatus=false;
-  fadedown=false;
+  ledFadedown=false;
 }
-
